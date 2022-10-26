@@ -3,6 +3,8 @@ package Entity;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 public class Produit {
@@ -24,13 +26,15 @@ public class Produit {
     private Integer categorieId;
     @Basic
     @Column(name = "created_at")
-    private Object createdAt;
+    private Timestamp createdAt;
     @Basic
     @Column(name = "updated_at")
-    private Object updatedAt;
+    private Timestamp updatedAt;
     @ManyToOne
-    @JoinColumn(name = "categorie_id", referencedColumnName = "id_categorie")
+    @JoinColumn(name = "categorie_id", referencedColumnName = "id_categorie", nullable = false, insertable = false, updatable = false)
     private Categorie categorieByCategorieId;
+    @OneToMany(mappedBy = "produitByProduitId")
+    private Collection<Promotion> promotionsByIdProduit;
 
     public int getIdProduit() {
         return idProduit;
@@ -72,19 +76,19 @@ public class Produit {
         this.categorieId = categorieId;
     }
 
-    public Object getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Object createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Object getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -124,5 +128,13 @@ public class Produit {
 
     public void setCategorieByCategorieId(Categorie categorieByCategorieId) {
         this.categorieByCategorieId = categorieByCategorieId;
+    }
+
+    public Collection<Promotion> getPromotionsByIdProduit() {
+        return promotionsByIdProduit;
+    }
+
+    public void setPromotionsByIdProduit(Collection<Promotion> promotionsByIdProduit) {
+        this.promotionsByIdProduit = promotionsByIdProduit;
     }
 }

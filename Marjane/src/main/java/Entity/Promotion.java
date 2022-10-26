@@ -3,6 +3,7 @@ package Entity;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 
 @Entity
 public class Promotion {
@@ -21,15 +22,15 @@ public class Promotion {
     private Integer categorieId;
     @Basic
     @Column(name = "created_at")
-    private Object createdAt;
+    private Timestamp createdAt;
     @Basic
     @Column(name = "updated_at")
-    private Object updatedAt;
+    private Timestamp updatedAt;
     @ManyToOne
-    @JoinColumn(name = "produit_id", referencedColumnName = "id_produit")
+    @JoinColumn(name = "produit_id", referencedColumnName = "id_produit", nullable = false, insertable = false, updatable = false)
     private Produit produitByProduitId;
     @ManyToOne
-    @JoinColumn(name = "categorie_id", referencedColumnName = "id_categorie")
+    @JoinColumn(name = "categorie_id", referencedColumnName = "id_categorie", nullable = false, insertable = false, updatable = false)
     private Categorie categorieByCategorieId;
 
     public int getId() {
@@ -64,19 +65,19 @@ public class Promotion {
         this.categorieId = categorieId;
     }
 
-    public Object getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Object createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Object getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 

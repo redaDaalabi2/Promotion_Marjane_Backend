@@ -2,6 +2,9 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+import java.util.Collection;
+
 @Entity
 public class Categorie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +16,16 @@ public class Categorie {
     private String nomCategorie;
     @Basic
     @Column(name = "created_at")
-    private Object createdAt;
+    private Timestamp createdAt;
     @Basic
     @Column(name = "updated_at")
-    private Object updatedAt;
+    private Timestamp updatedAt;
+    @OneToMany(mappedBy = "categorieByCategorieId")
+    private Collection<Produit> produitsByIdCategorie;
+    @OneToMany(mappedBy = "categorieByCategorieId")
+    private Collection<Promotion> promotionsByIdCategorie;
+    @OneToMany(mappedBy = "categorieByCategorieId")
+    private Collection<ResponsapleRayon> responsapleRayonsByIdCategorie;
 
     public int getIdCategorie() {
         return idCategorie;
@@ -34,19 +43,19 @@ public class Categorie {
         this.nomCategorie = nomCategorie;
     }
 
-    public Object getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Object createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Object getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -73,5 +82,29 @@ public class Categorie {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;
+    }
+
+    public Collection<Produit> getProduitsByIdCategorie() {
+        return produitsByIdCategorie;
+    }
+
+    public void setProduitsByIdCategorie(Collection<Produit> produitsByIdCategorie) {
+        this.produitsByIdCategorie = produitsByIdCategorie;
+    }
+
+    public Collection<Promotion> getPromotionsByIdCategorie() {
+        return promotionsByIdCategorie;
+    }
+
+    public void setPromotionsByIdCategorie(Collection<Promotion> promotionsByIdCategorie) {
+        this.promotionsByIdCategorie = promotionsByIdCategorie;
+    }
+
+    public Collection<ResponsapleRayon> getResponsapleRayonsByIdCategorie() {
+        return responsapleRayonsByIdCategorie;
+    }
+
+    public void setResponsapleRayonsByIdCategorie(Collection<ResponsapleRayon> responsapleRayonsByIdCategorie) {
+        this.responsapleRayonsByIdCategorie = responsapleRayonsByIdCategorie;
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="java:hibernate/SessionFactory">
+        <!-- Properties -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/marjane</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">redaDaalabi2</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <mapping class="Entity.Admin"></mapping>
+        <mapping class="Entity.Categorie"></mapping>
+        <mapping class="Entity.Centre"></mapping>
+        <mapping class="Entity.Produit"></mapping>
+        <mapping class="Entity.Promotion"></mapping>
+        <mapping class="Entity.ResponsapleRayon"></mapping>
+        <mapping class="Entity.Superadmin"></mapping>
+    </session-factory>
+</hibernate-configuration>

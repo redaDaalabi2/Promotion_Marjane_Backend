@@ -2,6 +2,7 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
@@ -15,7 +16,7 @@ public class Centre {
     private String nomCentre;
     @Basic
     @Column(name = "created_at")
-    private Object createdAt;
+    private Timestamp createdAt;
     @OneToMany(mappedBy = "centreByCentreId")
     private Collection<Admin> adminsByIdCentre;
 
@@ -35,11 +36,11 @@ public class Centre {
         this.nomCentre = nomCentre;
     }
 
-    public Object getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Object createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 

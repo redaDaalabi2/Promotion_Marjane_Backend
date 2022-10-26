@@ -2,6 +2,8 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 public class Superadmin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Superadmin {
     private String password;
     @Basic
     @Column(name = "created_at")
-    private Object createdAt;
+    private Timestamp createdAt;
 
     public int getId() {
         return id;
@@ -64,11 +66,11 @@ public class Superadmin {
         this.password = password;
     }
 
-    public Object getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Object createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 

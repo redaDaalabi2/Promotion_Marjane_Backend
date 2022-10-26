@@ -2,6 +2,8 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +27,13 @@ public class Admin {
     private Integer centreId;
     @Basic
     @Column(name = "created_at")
-    private Object createdAt;
+    private Timestamp createdAt;
     @Basic
     @Column(name = "updated_at")
-    private Object updatedAt;
+    private Timestamp updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "centre_id", referencedColumnName = "id_centre", nullable = false, insertable = false, updatable = false)
+    private Centre centreByCentreId;
 
     public int getId() {
         return id;
@@ -78,19 +83,19 @@ public class Admin {
         this.centreId = centreId;
     }
 
-    public Object getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Object createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Object getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -124,5 +129,13 @@ public class Admin {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         return result;
+    }
+
+    public Centre getCentreByCentreId() {
+        return centreByCentreId;
+    }
+
+    public void setCentreByCentreId(Centre centreByCentreId) {
+        this.centreByCentreId = centreByCentreId;
     }
 }

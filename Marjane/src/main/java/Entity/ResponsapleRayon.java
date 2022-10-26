@@ -2,6 +2,8 @@ package Entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "responsaple_rayon", schema = "public", catalog = "marjane")
 public class ResponsapleRayon {
@@ -26,12 +28,12 @@ public class ResponsapleRayon {
     private Integer categorieId;
     @Basic
     @Column(name = "created_at")
-    private Object createdAt;
+    private Timestamp createdAt;
     @Basic
     @Column(name = "updated_at")
-    private Object updatedAt;
+    private Timestamp updatedAt;
     @ManyToOne
-    @JoinColumn(name = "categorie_id", referencedColumnName = "id_categorie")
+    @JoinColumn(name = "categorie_id", referencedColumnName = "id_categorie", nullable = false, insertable = false, updatable = false)
     private Categorie categorieByCategorieId;
 
     public int getId() {
@@ -82,19 +84,19 @@ public class ResponsapleRayon {
         this.categorieId = categorieId;
     }
 
-    public Object getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Object createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Object getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
