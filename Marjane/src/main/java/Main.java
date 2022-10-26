@@ -1,8 +1,10 @@
-import Entity.Produit;
+import Entity.Categorie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+
+import java.sql.Timestamp;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +13,11 @@ public class Main {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            Produit produit = new Produit();
-            entityManager.persist(produit);
+            Categorie categorie = new Categorie();
+            categorie.setNomCategorie("aaaaaa");
+            categorie.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            categorie.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+            entityManager.persist(categorie);
             transaction.commit();
         }finally {
             if (transaction.isActive()){
