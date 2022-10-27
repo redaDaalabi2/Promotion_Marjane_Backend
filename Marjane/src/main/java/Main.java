@@ -1,4 +1,4 @@
-import Entity.Categorie;
+import Entity.Admin;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -13,11 +13,15 @@ public class Main {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            Categorie categorie = new Categorie();
-            categorie.setNomCategorie("aaaaaa");
-            categorie.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-            categorie.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-            entityManager.persist(categorie);
+            Admin admin = new Admin();
+            admin.setNom("DAALABI");
+            admin.setPrenom("Reda");
+            admin.setEmail("reda@gmail.com");
+            admin.setPassword("reda");
+            admin.setCentreId(9);
+            admin.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            admin.setUpdatedAt(new Timestamp((System.currentTimeMillis())));
+            entityManager.persist(admin);
             transaction.commit();
         }finally {
             if (transaction.isActive()){

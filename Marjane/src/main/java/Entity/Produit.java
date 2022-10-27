@@ -20,7 +20,7 @@ public class Produit {
     private int quantite;
     @Basic
     @Column(name = "prix")
-    private BigInteger prix;
+    private Double prix;
     @Basic
     @Column(name = "categorie_id")
     private Integer categorieId;
@@ -60,11 +60,11 @@ public class Produit {
         this.quantite = quantite;
     }
 
-    public BigInteger getPrix() {
+    public Double getPrix() {
         return prix;
     }
 
-    public void setPrix(BigInteger prix) {
+    public void setPrix(Double prix) {
         this.prix = prix;
     }
 

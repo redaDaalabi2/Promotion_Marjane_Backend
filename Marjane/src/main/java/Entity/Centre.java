@@ -15,6 +15,9 @@ public class Centre {
     @Column(name = "nom_centre")
     private String nomCentre;
     @Basic
+    @Column(name = "ville_centre")
+    private String villeCentre;
+    @Basic
     @Column(name = "created_at")
     private Timestamp createdAt;
     @OneToMany(mappedBy = "centreByCentreId")
@@ -36,6 +39,12 @@ public class Centre {
         this.nomCentre = nomCentre;
     }
 
+    public String getVilleCentre(){
+        return villeCentre;
+    }
+    public void setVilleCentre(String villeCentre){
+        this.villeCentre = villeCentre;
+    }
     public Timestamp getCreatedAt() {
         return createdAt;
     }
@@ -53,6 +62,7 @@ public class Centre {
 
         if (idCentre != centre.idCentre) return false;
         if (nomCentre != null ? !nomCentre.equals(centre.nomCentre) : centre.nomCentre != null) return false;
+        if (villeCentre != null ? !villeCentre.equals(centre.villeCentre) : centre.villeCentre != null) return false;
         if (createdAt != null ? !createdAt.equals(centre.createdAt) : centre.createdAt != null) return false;
 
         return true;
@@ -62,6 +72,7 @@ public class Centre {
     public int hashCode() {
         int result = idCentre;
         result = 31 * result + (nomCentre != null ? nomCentre.hashCode() : 0);
+        result = 31 * result + (villeCentre != null ? villeCentre.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         return result;
     }
