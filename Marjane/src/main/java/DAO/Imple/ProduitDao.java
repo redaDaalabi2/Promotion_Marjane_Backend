@@ -2,39 +2,75 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Produit;
-import org.hibernate.Session;
+import Entity.ResponsapleRayon;
+import Services.Jpa;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import java.util.Optional;
+import java.util.List;
 
-import java.util.ArrayList;
+public class ProduitDao implements BaseDao<Produit> {
 
-public class ProduitDao extends BaseDao<Produit> {
+    Jpa jpa = Jpa.getInstance();
+    EntityManagerFactory entityManagerFactory;
+    EntityManager entityManager;
+    EntityTransaction entityTransaction;
 
-    @Override
-    public void save(Produit entity) throws Exception {
-        super.save(entity);
+    public ProduitDao(){
+        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManager = entityManagerFactory.createEntityManager();
+        entityTransaction = entityManager.getTransaction();
     }
 
     @Override
-    public void update(Produit entity) throws Exception {
-        super.update(entity);
+    public Optional<Produit> findById(Long id) {
+        return Optional.ofNullable(entityManager.find(Produit.class, id));
     }
 
     @Override
-    public void delete(Produit entity) throws Exception {
-        super.delete(entity);
-    }
-
-    public ArrayList<Produit> getAllProduit()  {
+    public Produit save(Produit produit) {
         try {
-            Session session = getCurrentSession();
-            session.getTransaction();
-            session.beginTransaction();
-            ArrayList<Produit> produits = (ArrayList<Produit>) session.createQuery("SELECT p FROM Produit p", Produit.class).getResultList();
-            session.getTransaction().commit();
-            session.close();
-            return produits;
+            entityTransaction.begin();
+            if(produit == null){
+                entityManager.persist(null);
+            }
+            entityManager.merge(produit);
+            entityTransaction.commit();
+            return produit;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            entityTransaction.rollback();
+            e.printStackTrace();
+        } finally {
+            jpa.shutdown();
         }
+        return null;
+    }
+
+    @Override
+    public List<Produit> all() {
+        return entityManager.createQuery("from Produit ", Produit.class).getResultList();
+    }
+
+    @Override
+    public Boolean update(Long id, Produit produit) {
+        return null;
+    }
+
+    @Override
+    public Boolean delete(Long id) {
+        try{
+            entityTransaction.begin();
+            Optional<Produit> produit = findById(id);
+            produit.ifPresent(pr -> entityManager.remove(pr));
+            entityTransaction.commit();
+        }catch (Exception e){
+            entityTransaction.rollback();
+            return false;
+        } finally {
+            jpa.shutdown();
+        }
+        return true;
     }
 
 }

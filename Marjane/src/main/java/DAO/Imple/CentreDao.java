@@ -1,48 +1,62 @@
 package DAO.Imple;
 
 import DAO.BaseDao;
-import Entity.Admin;
 import Entity.Centre;
-import org.hibernate.Session;
+import Services.Jpa;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import java.util.Optional;
+import java.util.List;
 
-import java.util.ArrayList;
+public class CentreDao implements BaseDao<Centre> {
 
-public class CentreDao extends BaseDao<Centre> {
+    Jpa jpa = Jpa.getInstance();
+    EntityManagerFactory entityManagerFactory;
+    EntityManager entityManager;
+    EntityTransaction entityTransaction;
 
+    public CentreDao(){
+        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManager = entityManagerFactory.createEntityManager();
+        entityTransaction = entityManager.getTransaction();
+    }
     @Override
-    public void save(Centre entity) throws Exception {
-        super.save(entity);
+    public Optional<Centre> findById(Long id) {
+        return Optional.empty();
     }
 
     @Override
-    public void update(Centre entity) throws Exception {
-        super.update(entity);
-    }
-
-    @Override
-    public void delete(Centre entity) throws Exception {
-        super.delete(entity);
-    }
-
-    public ArrayList<Centre> getAllCenters()  {
+    public Centre save(Centre centre) {
         try {
-            Session session = getCurrentSession();
-            session.getTransaction();
-            session.beginTransaction();
-            ArrayList<Centre> centres = (ArrayList<Centre>) session.createQuery("SELECT c FROM Centre c", Centre.class).getResultList();
-            session.getTransaction().commit();
-            session.close();
-            return centres;
+            entityTransaction.begin();
+            if(centre == null){
+                entityManager.persist(null);
+            }
+            entityManager.merge(centre);
+            entityTransaction.commit();
+            return centre;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            entityTransaction.rollback();
+            e.printStackTrace();
+        } finally {
+            jpa.shutdown();
         }
+        return centre;
     }
 
-    public Centre getOneCentre(long Id) {
+    @Override
+    public List<Centre> all() {
         return null;
     }
 
-    public Centre getCentreById(long id){
+    @Override
+    public Boolean update(Long id, Centre centre) {
+        return null;
+    }
+
+    @Override
+    public Boolean delete(Long id) {
         return null;
     }
 

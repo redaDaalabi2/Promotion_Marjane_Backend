@@ -2,39 +2,74 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Categorie;
-import org.hibernate.Session;
+import Services.Jpa;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import java.util.Optional;
+import java.util.List;
 
-import java.util.ArrayList;
+public class CategorieDao implements BaseDao<Categorie>{
 
-public class CategorieDao extends BaseDao<Categorie> {
+    Jpa jpa = Jpa.getInstance();
+    EntityManagerFactory entityManagerFactory;
+    EntityManager entityManager;
+    EntityTransaction entityTransaction;
 
-    @Override
-    public void save(Categorie entity) throws Exception {
-        super.save(entity);
+    public CategorieDao(){
+        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManager = entityManagerFactory.createEntityManager();
+        entityTransaction = entityManager.getTransaction();
     }
 
     @Override
-    public void update(Categorie entity) throws Exception {
-        super.update(entity);
+    public Optional<Categorie> findById(Long id) {
+        return Optional.ofNullable(entityManager.find(Categorie.class,id));
     }
 
     @Override
-    public void delete(Categorie entity) throws Exception {
-        super.delete(entity);
-    }
-
-    public ArrayList<Categorie> getAllCategorie()  {
+    public Categorie save(Categorie categorie) {
         try {
-            Session session = getCurrentSession();
-            session.getTransaction();
-            session.beginTransaction();
-            ArrayList<Categorie> categories = (ArrayList<Categorie>) session.createQuery("SELECT c FROM Categorie c", Categorie.class).getResultList();
-            session.getTransaction().commit();
-            session.close();
-            return categories;
+            entityTransaction.begin();
+            if(categorie == null){
+                entityManager.persist(null);
+            }
+            entityManager.merge(categorie);
+            entityTransaction.commit();
+            return categorie;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            entityTransaction.rollback();
+            e.printStackTrace();
+        } finally {
+            jpa.shutdown();
         }
+        return categorie;
+    }
+
+    @Override
+    public List<Categorie> all() {
+        return null;
+    }
+
+    @Override
+    public Boolean update(Long id, Categorie categorie) {
+        return null;
+    }
+
+    @Override
+    public Boolean delete(Long id) {
+        try{
+            entityTransaction.begin();
+            Optional<Categorie> categorie = findById(id);
+            categorie.ifPresent(c -> entityManager.remove(c));
+            entityTransaction.commit();
+        }catch (Exception e){
+            entityTransaction.rollback();
+            return false;
+        } finally {
+            jpa.shutdown();
+        }
+        return true;
     }
 
 }

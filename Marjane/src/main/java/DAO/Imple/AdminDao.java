@@ -2,39 +2,74 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Admin;
-import org.hibernate.Session;
+import Services.Jpa;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import java.util.Optional;
+import java.util.List;
 
-import java.util.ArrayList;
+public class AdminDao implements BaseDao<Admin> {
 
-public class AdminDao extends BaseDao<Admin> {
+    Jpa jpa = Jpa.getInstance();
+    EntityManagerFactory entityManagerFactory;
+    EntityManager entityManager;
+    EntityTransaction entityTransaction;
 
-    @Override
-    public void save(Admin entity) throws Exception {
-        super.save(entity);
+    public AdminDao(){
+        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManager = entityManagerFactory.createEntityManager();
+        entityTransaction = entityManager.getTransaction();
     }
 
     @Override
-    public void update(Admin entity) throws Exception {
-        super.update(entity);
+    public Optional<Admin> findById(Long id) {
+        return Optional.ofNullable(entityManager.find(Admin.class, id));
     }
 
     @Override
-    public void delete(Admin entity) throws Exception {
-        super.delete(entity);
-    }
-
-    public ArrayList<Admin> getAllAdmin()  {
+    public Admin save(Admin admin) {
         try {
-            Session session = getCurrentSession();
-            session.getTransaction();
-            session.beginTransaction();
-            ArrayList<Admin> admins = (ArrayList<Admin>) session.createQuery("SELECT a FROM Admin a", Admin.class).getResultList();
-            session.getTransaction().commit();
-            session.close();
-            return admins;
+            entityTransaction.begin();
+            if(admin == null){
+                entityManager.persist(null);
+            }
+            entityManager.merge(admin);
+            entityTransaction.commit();
+            return admin;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            entityTransaction.rollback();
+            e.printStackTrace();
+        } finally {
+            jpa.shutdown();
         }
+        return null;
+    }
+
+    @Override
+    public List<Admin> all() {
+        return entityManager.createQuery("from Admin ", Admin.class).getResultList();
+    }
+
+    @Override
+    public Boolean update(Long id, Admin admin) {
+        return null;
+    }
+
+    @Override
+    public Boolean delete(Long id) {
+        try{
+            entityTransaction.begin();
+            Optional<Admin> admin = findById(id);
+            admin.ifPresent(a -> entityManager.remove(a));
+            entityTransaction.commit();
+        }catch (Exception e){
+            entityTransaction.rollback();
+            return false;
+        } finally {
+            jpa.shutdown();
+        }
+        return true;
     }
 
 }

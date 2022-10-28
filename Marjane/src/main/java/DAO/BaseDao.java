@@ -1,36 +1,15 @@
 package DAO;
 
-import org.hibernate.Session;
-import Services.SessionService;
+import java.util.*;
 
-public abstract class BaseDao<T> {
+public interface BaseDao<T> {
+    Optional<T> findById(Long id);
 
-    public void save(T entity) throws Exception {
-        Session session = getCurrentSession();
-        session.getTransaction();
-        session.persist(entity);
-        session.getTransaction().commit();
-        session.close();
-    }
+    T save(T t);
 
-    public void update(T entity) throws Exception {
-        Session session = getCurrentSession();
-        session.getTransaction();
-        session.merge(entity);
-        session.getTransaction().commit();
-        session.close();
-    }
+    List<T> all();
 
-    public void delete(T entity) throws Exception {
-        Session session = getCurrentSession();
-        session.getTransaction();
-        session.remove(entity);
-        session.getTransaction().commit();
-        session.close();
-    }
+    Boolean update(Long id, T t);
 
-    protected Session getCurrentSession() {
-        return SessionService.getCurrentSession();
-    }
-
+    Boolean delete(Long id);
 }

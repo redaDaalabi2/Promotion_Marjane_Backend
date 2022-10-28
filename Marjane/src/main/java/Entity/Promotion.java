@@ -15,6 +15,9 @@ public class Promotion {
     @Column(name = "pourcentage")
     private BigInteger pourcentage;
     @Basic
+    @Column(name = "status")
+    private String status;
+    @Basic
     @Column(name = "produit_id")
     private Integer produitId;
     @Basic
@@ -49,6 +52,12 @@ public class Promotion {
         this.pourcentage = pourcentage;
     }
 
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public Integer getProduitId() {
         return produitId;
     }
@@ -91,6 +100,7 @@ public class Promotion {
         if (id != promotion.id) return false;
         if (pourcentage != null ? !pourcentage.equals(promotion.pourcentage) : promotion.pourcentage != null)
             return false;
+        if (status != null ? !status.equals(promotion.status) : promotion.status != null) return false;
         if (produitId != null ? !produitId.equals(promotion.produitId) : promotion.produitId != null) return false;
         if (categorieId != null ? !categorieId.equals(promotion.categorieId) : promotion.categorieId != null)
             return false;
@@ -104,6 +114,7 @@ public class Promotion {
     public int hashCode() {
         int result = id;
         result = 31 * result + (pourcentage != null ? pourcentage.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (produitId != null ? produitId.hashCode() : 0);
         result = 31 * result + (categorieId != null ? categorieId.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
