@@ -16,11 +16,11 @@ class AdminRepoTest {
 
     @Test
     void createAdmin() {
-        admin.setNom("DAALABI");
-        admin.setPrenom("Reda");
-        admin.setEmail("reda@gmail.com");
-        admin.setPassword("reda");
-        admin.setCentreId(10);
+        admin.setNom("GHRABLA");
+        admin.setPrenom("Kamal");
+        admin.setEmail("kamal@gmail.com");
+        admin.setPassword("kamal");
+        admin.setCentreId(11);
         assertNotNull(AdminRepo.CreateAdmin(
                 admin.getNom(),
                 admin.getPrenom(),

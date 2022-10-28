@@ -45,9 +45,8 @@ public class AdminRepo {
     }
 
     public static String adminMessage(String email, String password){
-        return  "Bonjour, ton compte a été créer avec succes. \n" +
-                "\nles information de compte pour login : \n" +
-                "\n\tEmail :   "+ email + "\n\tPassword :   " + password + "\nService Marjan.\nMerci.";
+        return  "Bonjour, le compte a été créer avec succes. \n" +
+                "\n\tEmail :   "+ email + "\n\tPassword :   " + password;
     }
 
 }
