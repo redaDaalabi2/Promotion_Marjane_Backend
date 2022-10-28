@@ -54,7 +54,18 @@ public class ProduitDao implements BaseDao<Produit> {
 
     @Override
     public Boolean update(Long id, Produit produit) {
-        return null;
+        try {
+            entityTransaction.begin();
+            entityManager.merge(produit);
+            entityTransaction.commit();
+            return true;
+        } catch (Exception e) {
+            entityTransaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            jpa.shutdown();
+        }
     }
 
     @Override
