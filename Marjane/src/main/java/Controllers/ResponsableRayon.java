@@ -1,4 +1,4 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.ResponsableRayonDao;
 import Services.Email;
@@ -7,7 +7,7 @@ import Services.Hash;
 import java.util.List;
 import java.util.Objects;
 
-public class ResponsableRayonRepo {
+public class ResponsableRayon {
 
     private static final ResponsableRayonDao responsableRayonDao = new ResponsableRayonDao();
 

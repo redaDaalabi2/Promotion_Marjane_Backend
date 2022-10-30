@@ -1,4 +1,4 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.AdminDao;
 import Services.Email;
@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-public class AdminRepo {
+public class Admin {
 
     private static final AdminDao adminDao = new AdminDao();
 

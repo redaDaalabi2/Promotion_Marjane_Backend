@@ -1,13 +1,12 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.ProduitDao;
-import Entity.Produit;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
-public class ProduitRepo {
+public class Produit {
 
     private static final ProduitDao produitDao = new ProduitDao();
 
@@ -38,11 +37,11 @@ public class ProduitRepo {
         return produitDao.delete(Long.valueOf(id_produit));
     }
 
-    public static List<Produit> getAllProduits() {
+    public static List<Entity.Produit> getAllProduits() {
         return produitDao.all();
     }
 
-    public static Optional<Produit> getProduitById(Integer id_produit) {
+    public static Optional<Entity.Produit> getProduitById(Integer id_produit) {
         return produitDao.findById(Long.valueOf(id_produit));
     }
 

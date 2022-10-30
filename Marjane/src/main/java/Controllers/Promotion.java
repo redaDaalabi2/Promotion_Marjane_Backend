@@ -1,8 +1,8 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.PromotionDao;
 
-public class PromotionRepo {
+public class Promotion {
 
     private final static PromotionDao promotionDao = new PromotionDao();
 

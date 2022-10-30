@@ -1,25 +1,25 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.ProduitDao;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProduitRepoTest {
+class ProduitTest {
 
     @Test
     void createProduit() {
-        assertTrue(ProduitRepo.CreateProduit("BALLON", 50, 100.00, 2));
+        assertTrue(Produit.CreateProduit("BALLON", 50, 100.00, 2));
     }
 
     @Test
     void updateProduit() {
-        assertTrue(ProduitRepo.UpdateProduit(2, "DELL Latitude 5410", 10, 15000.00, 8));
+        assertTrue(Produit.UpdateProduit(7, "Ballon", 10, 99.99, 2));
     }
 
     @Test
     void deleteProduit() {
-        assertTrue(ProduitRepo.DeleteProduit(6));
+        assertTrue(Produit.DeleteProduit(7));
     }
 
     @Test
@@ -29,6 +29,6 @@ class ProduitRepoTest {
 
     @Test
     void getProduitById() {
-        assertNotNull(ProduitRepo.getProduitById(2));
+        assertNotNull(Produit.getProduitById(2));
     }
 }

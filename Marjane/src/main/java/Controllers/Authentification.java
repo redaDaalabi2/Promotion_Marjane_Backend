@@ -1,4 +1,4 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.AdminDao;
 import DAO.Imple.ResponsableRayonDao;
@@ -10,7 +10,7 @@ import Services.Hash;
 
 import java.util.Objects;
 
-public class AuthentificationRepo {
+public class Authentification {
 
     public static Superadmin isSuperadminAuth(String email, String password){
         for (Superadmin superadmin: new SuperadminDao().all()){

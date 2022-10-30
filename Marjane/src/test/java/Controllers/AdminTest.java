@@ -1,27 +1,26 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.AdminDao;
 import org.junit.jupiter.api.Test;
-import Entity.Admin;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AdminRepoTest {
+class AdminTest {
 
-    private final Admin admin;
+    private final Entity.Admin admin;
 
-    public AdminRepoTest() {
-        admin = new Admin();
+    public AdminTest() {
+        admin = new Entity.Admin();
     }
 
     @Test
     void createAdmin() {
-        admin.setNom("GHRABLA");
-        admin.setPrenom("Kamal");
-        admin.setEmail("kamal@gmail.com");
-        admin.setPassword("kamal");
-        admin.setCentreId(11);
-        assertNotNull(AdminRepo.CreateAdmin(
+        admin.setNom("FADEL");
+        admin.setPrenom("Youness");
+        admin.setEmail("youness@gmail.com");
+        admin.setPassword("youness");
+        admin.setCentreId(12);
+        assertNotNull(Admin.CreateAdmin(
                 admin.getNom(),
                 admin.getPrenom(),
                 admin.getEmail(),

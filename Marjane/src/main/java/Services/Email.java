@@ -8,8 +8,9 @@ import javax.mail.internet.MimeMessage;
 public class Email {
     public static void sendMail(String userEmail, String msg) {
         // Sender's email ID needs to be mentioned
-        String email = "daalabir@gmail.com";
-        String password = "udfcuhgoqjdwloan";
+        String email = "daalabireda@gmail.com";
+        String password = "gwlzvspijaxggbqk";
+        //udfcuhgoqjdwloan
 
         // Get system properties
         Properties properties = System.getProperties();

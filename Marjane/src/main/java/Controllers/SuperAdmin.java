@@ -1,4 +1,4 @@
-package Repository;
+package Controllers;
 
 import DAO.Imple.SuperadminDao;
 import Services.Hash;
@@ -6,7 +6,7 @@ import Services.Hash;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class SuperAdminRepo {
+public class SuperAdmin {
 
     public static final SuperadminDao superadminDao = new SuperadminDao();
 
