@@ -1,26 +1,27 @@
 package Controllers;
 
 import DAO.Imple.ResponsableRayonDao;
+import Entity.ResponsapleRayon;
 import Services.Email;
 import Services.Hash;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ResponsableRayon {
+public class ResponsableRayonController {
 
     private static final ResponsableRayonDao responsableRayonDao = new ResponsableRayonDao();
 
     public static Boolean CreateResponsableRayon(String nom, String prenom, String email, String password, Integer categorie_id){
-        List<Entity.ResponsapleRayon> responsapleRayons = responsableRayonDao.all();
+        List<ResponsapleRayon> responsapleRayons = responsableRayonDao.all();
         if(checkEmailExists(responsapleRayons, email)){
             return null;
         } else {
-            for (Entity.ResponsapleRayon responsapleRayon1: responsapleRayons){
+            for (ResponsapleRayon responsapleRayon1: responsapleRayons){
                 if(responsapleRayon1.getCategorieId().equals(categorie_id))
                     return null;
             }
-            Entity.ResponsapleRayon newResponsapleRayon = new Entity.ResponsapleRayon();
+            ResponsapleRayon newResponsapleRayon = new ResponsapleRayon();
             newResponsapleRayon.setNom(nom);
             newResponsapleRayon.setPrenom(prenom);
             newResponsapleRayon.setEmail(email);
@@ -34,8 +35,8 @@ public class ResponsableRayon {
         }
     }
 
-    public static Boolean checkEmailExists(List<Entity.ResponsapleRayon> responsapleRayons, String email){
-        for (Entity.ResponsapleRayon responsapleRayon: responsapleRayons){
+    public static Boolean checkEmailExists(List<ResponsapleRayon> responsapleRayons, String email){
+        for (ResponsapleRayon responsapleRayon: responsapleRayons){
             if (Objects.equals(email, responsapleRayon.getEmail())) {
                 return true;
             }

@@ -1,18 +1,18 @@
 package Controllers;
 
 import DAO.Imple.SuperadminDao;
+import Entity.Superadmin;
 import Services.Hash;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-public class SuperAdmin {
+public class SuperAdminController {
 
     public static final SuperadminDao superadminDao = new SuperadminDao();
 
     public static Boolean CreateSuperAdmin(String nom, String prenom, String email, String password) {
-        List<Entity.Superadmin> superadmins = superadminDao.all();
-        Entity.Superadmin newSuperAdmin = new Entity.Superadmin();
+        Superadmin newSuperAdmin = new Superadmin();
         newSuperAdmin.setNom(nom);
         newSuperAdmin.setPrenom(prenom);
         newSuperAdmin.setEmail(email);

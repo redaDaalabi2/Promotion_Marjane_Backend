@@ -1,6 +1,7 @@
 package Controllers;
 
 import DAO.Imple.AdminDao;
+import Entity.Admin;
 import Services.Email;
 import Services.Hash;
 
@@ -8,12 +9,12 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-public class Admin {
+public class AdminController {
 
     private static final AdminDao adminDao = new AdminDao();
 
     public static Boolean CreateAdmin(String nom, String prenom, String email, String password, Integer centre_id) {
-        List<Entity.Admin> admin = adminDao.all();
+        List<Admin> admin = adminDao.all();
         if(checkEmailExists(admin, email)){
             return null;
         } else {
@@ -21,7 +22,7 @@ public class Admin {
                 if(admin1.getCentreId().equals(centre_id))
                     return null;
             }
-            Entity.Admin newAdmin = new Entity.Admin();
+            Admin newAdmin = new Admin();
             newAdmin.setNom(nom);
             newAdmin.setPrenom(prenom);
             newAdmin.setEmail(email);
@@ -35,7 +36,7 @@ public class Admin {
         }
     }
 
-    public static Boolean checkEmailExists(List<Entity.Admin> admins, String email){
+    public static Boolean checkEmailExists(List<Admin> admins, String email){
         for (Entity.Admin admin: admins){
             if (Objects.equals(email, admin.getEmail())) {
                 return true;

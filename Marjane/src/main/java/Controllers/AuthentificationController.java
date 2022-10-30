@@ -10,7 +10,7 @@ import Services.Hash;
 
 import java.util.Objects;
 
-public class Authentification {
+public class AuthentificationController {
 
     public static Superadmin isSuperadminAuth(String email, String password){
         for (Superadmin superadmin: new SuperadminDao().all()){

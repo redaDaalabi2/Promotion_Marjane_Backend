@@ -5,21 +5,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProduitTest {
+class ProduitControllerTest {
 
     @Test
     void createProduit() {
-        assertTrue(Produit.CreateProduit("BALLON", 50, 100.00, 2));
+        assertTrue(ProduitController.CreateProduit("BALLON", 50, 100.00, 2));
     }
 
     @Test
     void updateProduit() {
-        assertTrue(Produit.UpdateProduit(7, "Ballon", 10, 99.99, 2));
+        assertTrue(ProduitController.UpdateProduit(12, "Ballon", 10, 99.99, 2));
     }
 
     @Test
     void deleteProduit() {
-        assertTrue(Produit.DeleteProduit(7));
+        assertTrue(ProduitController.DeleteProduit(12));
     }
 
     @Test
@@ -29,6 +29,6 @@ class ProduitTest {
 
     @Test
     void getProduitById() {
-        assertNotNull(Produit.getProduitById(2));
+        assertNotNull(ProduitController.getProduitById(2));
     }
 }

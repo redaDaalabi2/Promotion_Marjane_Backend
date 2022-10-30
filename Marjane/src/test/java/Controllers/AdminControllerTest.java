@@ -1,16 +1,17 @@
 package Controllers;
 
 import DAO.Imple.AdminDao;
+import Entity.Admin;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AdminTest {
+class AdminControllerTest {
 
-    private final Entity.Admin admin;
+    private final Admin admin;
 
-    public AdminTest() {
-        admin = new Entity.Admin();
+    public AdminControllerTest() {
+        admin = new Admin();
     }
 
     @Test
@@ -20,7 +21,7 @@ class AdminTest {
         admin.setEmail("youness@gmail.com");
         admin.setPassword("youness");
         admin.setCentreId(12);
-        assertNotNull(Admin.CreateAdmin(
+        assertNotNull(AdminController.CreateAdmin(
                 admin.getNom(),
                 admin.getPrenom(),
                 admin.getEmail(),

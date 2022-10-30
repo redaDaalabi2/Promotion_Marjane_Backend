@@ -6,11 +6,11 @@ import Entity.ResponsapleRayon;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class ResponsableRayonTest {
+class ResponsableRayonControllerTest {
 
     private final ResponsapleRayon responsablerayon;
 
-    public ResponsableRayonTest(){
+    public ResponsableRayonControllerTest(){
         responsablerayon = new ResponsapleRayon();
     }
 
@@ -21,7 +21,7 @@ class ResponsableRayonTest {
         responsablerayon.setEmail("youssef@gmail.com");
         responsablerayon.setPassword("youssef");
         responsablerayon.setCategorieId(7);
-        assertNotNull(ResponsableRayon.CreateResponsableRayon(
+        assertNotNull(ResponsableRayonController.CreateResponsableRayon(
                 responsablerayon.getNom(),
                 responsablerayon.getPrenom(),
                 responsablerayon.getEmail(),
