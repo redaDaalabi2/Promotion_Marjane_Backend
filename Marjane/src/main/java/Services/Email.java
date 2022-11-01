@@ -11,14 +11,16 @@ public class Email {
         String email = "daalabireda@gmail.com";
         String password = "gwlzvspijaxggbqk";
         //udfcuhgoqjdwloan
+        String smtp = "smtp.gmail.com";
+        String port = "25";
 
         // Get system properties
         Properties properties = System.getProperties();
 
         // Setup mail server
         properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.host","smtp.gmail.com");
-        properties.put("mail.smtp.port","25");
+        properties.put("mail.smtp.host",smtp);
+        properties.put("mail.smtp.port", port);
         properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
         properties.put("mail.smtp.starttls.enable", "true");
 

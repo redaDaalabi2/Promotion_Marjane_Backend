@@ -16,11 +16,11 @@ class AdminControllerTest {
 
     @Test
     void createAdmin() {
-        admin.setNom("FADEL");
-        admin.setPrenom("Youness");
-        admin.setEmail("youness@gmail.com");
-        admin.setPassword("youness");
-        admin.setCentreId(12);
+        admin.setNom("DAALABI");
+        admin.setPrenom("Hamza");
+        admin.setEmail("daalabihamza@gmail.com");
+        admin.setPassword("hamza");
+        admin.setCentreId(10);
         assertNotNull(AdminController.CreateAdmin(
                 admin.getNom(),
                 admin.getPrenom(),

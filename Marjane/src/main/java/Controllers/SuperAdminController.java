@@ -20,4 +20,5 @@ public class SuperAdminController {
         newSuperAdmin.setPassword(Hash.getHashedPassword(password));
         return superadminDao.save(newSuperAdmin) != null;
     }
+
 }

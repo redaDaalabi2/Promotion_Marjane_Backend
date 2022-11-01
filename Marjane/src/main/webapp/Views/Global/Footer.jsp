@@ -66,5 +66,6 @@
         </div>
     </div>
 </footer>
+<script src="https://kit.fontawesome.com/d1aca8f508.js" crossorigin="anonymous"></script
 </body>
 </html>
