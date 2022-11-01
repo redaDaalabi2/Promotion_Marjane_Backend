@@ -16,9 +16,9 @@ class SuperAdminControllerTestController {
     @Test
     void createSuperAdmin() {
         superadmin.setNom("DAALABI");
-        superadmin.setPrenom("Hamza");
-        superadmin.setEmail("hamza@gmail.com");
-        superadmin.setPassword("hamza");
+        superadmin.setPrenom("Reda");
+        superadmin.setEmail("reda@gmail.com");
+        superadmin.setPassword("reda");
         assertNotNull(SuperAdminController.CreateSuperAdmin(
                 superadmin.getNom(),
                 superadmin.getPrenom(),
