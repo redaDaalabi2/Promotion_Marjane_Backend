@@ -4,6 +4,8 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Views/Global/Sidebar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Views/Global" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Views/SuperAdmin/CenterAdmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Views/SuperAdmin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Views/SuperAdmin/CreateAdmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Views/SuperAdmin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Views/SuperAdmin/LoginSuperAdmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Views/SuperAdmin" />
       </map>
     </option>

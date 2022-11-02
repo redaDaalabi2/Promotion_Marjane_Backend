@@ -2,6 +2,7 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Categorie;
+import Entity.Centre;
 import Services.Jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -48,7 +49,7 @@ public class CategorieDao implements BaseDao<Categorie>{
 
     @Override
     public List<Categorie> all() {
-        return null;
+        return entityManager.createQuery("from Categorie ", Categorie.class).getResultList();
     }
 
     @Override

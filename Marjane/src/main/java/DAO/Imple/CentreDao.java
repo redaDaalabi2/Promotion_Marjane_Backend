@@ -2,6 +2,7 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Centre;
+import Entity.Produit;
 import Services.Jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -47,7 +48,7 @@ public class CentreDao implements BaseDao<Centre> {
 
     @Override
     public List<Centre> all() {
-        return null;
+        return entityManager.createQuery("from Centre ", Centre.class).getResultList();
     }
 
     @Override

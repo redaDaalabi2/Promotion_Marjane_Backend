@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
+import static java.lang.System.out;
+
 @WebServlet(name = "CreateAdminServlet", value = "/CreateAdminServlet")
 public class CreateAdminServlet extends HttpServlet {
     AdminController adminController = new AdminController();
@@ -21,9 +23,10 @@ public class CreateAdminServlet extends HttpServlet {
         String nom = request.getParameter("nom");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        Integer id_centre = Integer.valueOf(request.getParameter("id_centre"));
 
         try {
-            if(adminController.CreateAdmin(nom, prenom, email, password, 10)){
+            if(adminController.CreateAdmin(nom, prenom, email, password, id_centre)){
                 response.sendRedirect("./CreateAdminServlet");
             }else {
                 response.sendRedirect("./SuperAdminDashboardServlet");
