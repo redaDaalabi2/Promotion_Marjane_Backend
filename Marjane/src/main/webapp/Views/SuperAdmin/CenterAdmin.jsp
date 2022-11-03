@@ -1,9 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="Controllers.CentreController"%>
-<%@page import="Entity.Centre"%>
 <div class="flex">
     <jsp:include page="../Global/Sidebar.jsp" />
-    <section class="w-4/5 h-screen bg-gray-200">
+    <section class="w-4/5 ml-auto bg-gray-200">
         <div class="w-full flex justify-center">
             <div class="w-full bg-white p-5 rounded-lg mt-8 mx-8">
                 <h1 class="text-center pb-2 pt-1 text-xl font-medium">Les centre disponible</h1>
@@ -29,25 +27,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <%
-                                        CentreController centreController = new CentreController();
-                                        for (Centre c : centreController.getAllCentres()) {
-                                    %>
-                                    <tr class="bg-white border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <%=c.getIdCentre()%>
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <%=c.getNomCentre()%>
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <%=c.getVilleCentre()%>
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <%=c.getCreatedAt()%>
-                                        </td>
-                                    </tr>
-                                    <% } %>
+                                    <c:forEach items="${centres}" var="centre">
+                                        <tr class="bg-white border-b">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                ${centre.idCentre}
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                ${centre.nomCentre}
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                ${centre.villeCentre}
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                ${centre.createdAt}
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -56,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full flex justify-center mt-8">
+        <div class="w-full flex justify-center my-8 bg-gray-200">
             <a href="#" class="flex items-center px-4 py-2 mx-1 text-gray-500 bg-white rounded-md cursor-not-allowed dark:bg-gray-800 dark:text-gray-600">
                 previous
             </a>

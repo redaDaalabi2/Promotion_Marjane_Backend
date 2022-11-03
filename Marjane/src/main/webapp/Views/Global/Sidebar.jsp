@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
   <link rel="icon" href="../../Assets/logo.ico">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <title>Marjane</title>
 </head>
 <body>
-<div class="flex flex-col w-64 h-screen px-4 py-8 bg-white border-r dark:bg-gray-900 dark:border-gray-700">
+<div class="flex flex-col w-1/5 fixed px-4 py-8 bg-white border-r dark:bg-gray-900 dark:border-gray-700">
   <img class="w-1/2" src="../../Assets/logo.jpg" >
   <div class="flex flex-col justify-between flex-1 mt-6">
     <nav>

@@ -2,23 +2,22 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Centre;
-import Entity.Produit;
-import Services.Jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
 import java.util.Optional;
 import java.util.List;
 
 public class CentreDao implements BaseDao<Centre> {
 
-    Jpa jpa = Jpa.getInstance();
     EntityManagerFactory entityManagerFactory;
     EntityManager entityManager;
     EntityTransaction entityTransaction;
 
     public CentreDao(){
-        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManagerFactory = Persistence.createEntityManagerFactory("default");
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
     }
@@ -41,7 +40,7 @@ public class CentreDao implements BaseDao<Centre> {
             entityTransaction.rollback();
             e.printStackTrace();
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return centre;
     }

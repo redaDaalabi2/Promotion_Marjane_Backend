@@ -2,23 +2,22 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Categorie;
-import Entity.Centre;
-import Services.Jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
 import java.util.Optional;
 import java.util.List;
 
 public class CategorieDao implements BaseDao<Categorie>{
 
-    Jpa jpa = Jpa.getInstance();
     EntityManagerFactory entityManagerFactory;
     EntityManager entityManager;
     EntityTransaction entityTransaction;
 
     public CategorieDao(){
-        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManagerFactory = Persistence.createEntityManagerFactory("default");
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
     }
@@ -42,7 +41,7 @@ public class CategorieDao implements BaseDao<Categorie>{
             entityTransaction.rollback();
             e.printStackTrace();
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return categorie;
     }
@@ -68,7 +67,7 @@ public class CategorieDao implements BaseDao<Categorie>{
             entityTransaction.rollback();
             return false;
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return true;
     }

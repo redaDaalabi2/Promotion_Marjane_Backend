@@ -2,22 +2,22 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Admin;
-import Services.Jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
 import java.util.Optional;
 import java.util.List;
 
 public class AdminDao implements BaseDao<Admin> {
 
-    Jpa jpa = Jpa.getInstance();
     EntityManagerFactory entityManagerFactory;
     EntityManager entityManager;
     EntityTransaction entityTransaction;
 
     public AdminDao(){
-        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManagerFactory = Persistence.createEntityManagerFactory("default");
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
     }
@@ -41,7 +41,7 @@ public class AdminDao implements BaseDao<Admin> {
             entityTransaction.rollback();
             e.printStackTrace();
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return null;
     }
@@ -67,7 +67,7 @@ public class AdminDao implements BaseDao<Admin> {
             entityTransaction.rollback();
             return false;
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return true;
     }

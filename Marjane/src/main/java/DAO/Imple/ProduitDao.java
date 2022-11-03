@@ -2,23 +2,22 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Produit;
-import Entity.ResponsapleRayon;
-import Services.Jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
 import java.util.Optional;
 import java.util.List;
 
 public class ProduitDao implements BaseDao<Produit> {
 
-    Jpa jpa = Jpa.getInstance();
     EntityManagerFactory entityManagerFactory;
     EntityManager entityManager;
     EntityTransaction entityTransaction;
 
     public ProduitDao(){
-        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManagerFactory = Persistence.createEntityManagerFactory("default");
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
     }
@@ -42,7 +41,7 @@ public class ProduitDao implements BaseDao<Produit> {
             entityTransaction.rollback();
             e.printStackTrace();
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return null;
     }
@@ -64,7 +63,7 @@ public class ProduitDao implements BaseDao<Produit> {
             e.printStackTrace();
             return false;
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
     }
 
@@ -79,7 +78,7 @@ public class ProduitDao implements BaseDao<Produit> {
             entityTransaction.rollback();
             return false;
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return true;
     }

@@ -2,24 +2,19 @@ package DAO.Imple;
 
 import DAO.BaseDao;
 import Entity.Promotion;
-import Services.Jpa;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 
 import java.util.Optional;
 import java.util.List;
 
 public class PromotionDao implements BaseDao<Promotion>{
 
-    Jpa jpa = Jpa.getInstance();
     EntityManagerFactory entityManagerFactory;
     EntityManager entityManager;
     EntityTransaction entityTransaction;
 
     public PromotionDao(){
-        entityManagerFactory = jpa.getEntityManagerFactory();
+        entityManagerFactory = Persistence.createEntityManagerFactory("default");
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
     }
@@ -43,7 +38,7 @@ public class PromotionDao implements BaseDao<Promotion>{
             entityTransaction.rollback();
             e.printStackTrace();
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return promotion;
     }
@@ -67,7 +62,7 @@ public class PromotionDao implements BaseDao<Promotion>{
             entityTransaction.rollback();
             e.printStackTrace();
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return false;
     }
@@ -83,7 +78,7 @@ public class PromotionDao implements BaseDao<Promotion>{
             entityTransaction.rollback();
             return false;
         } finally {
-            jpa.shutdown();
+            entityManager.close();
         }
         return true;
     }
