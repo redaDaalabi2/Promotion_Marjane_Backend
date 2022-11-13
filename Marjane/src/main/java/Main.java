@@ -11,15 +11,15 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
         //System.out.println(Objects.requireNonNull(PromotionController.listPromotion(1)).get(0).getId());
-        CentreController centreController = new CentreController();
-        //centreController.CreateCentre("MarjaneNador", "Nador");
-        List<Centre> centres = centreController.getAllCentres();
-        centres.stream().forEach(centre -> {
-            System.out.println(centre.getIdCentre());
-            System.out.println(centre.getNomCentre());
-            System.out.println(centre.getVilleCentre());
-            System.out.println(centre.getCreatedAt());
-        });
+//        CentreController centreController = new CentreController();
+//        centreController.CreateCentre("MarjaneDakhla", "Dakhla");
+//        List<Centre> centres = centreController.getAllCentres();
+//        centres.stream().forEach(centre -> {
+//            System.out.println(centre.getIdCentre());
+//            System.out.println(centre.getNomCentre());
+//            System.out.println(centre.getVilleCentre());
+//            System.out.println(centre.getCreatedAt());
+//        });
         //ProduitRepo.CreateProduit("Cherler", 6, 100.00, 7);
         /*List<Produit> produits = ProduitRepo.getAllProduits();
         produits.stream().forEach(produit -> {

@@ -6,7 +6,7 @@
             <div class="w-full bg-white p-5 rounded-lg mt-8 mx-8">
                 <h1 class="text-center pb-2 pt-1 text-xl font-medium">Create Admin</h1>
                 <form
-                    action="../../../CreateAdminServlet"
+                    action="../../../CreateAdminServlet.DashboardSuperAdminServlet"
                     method="post"
                     class="flex flex-col space-y-5"
                 >

@@ -6,4 +6,28 @@
         <welcome-file-list>
             <welcome-file>Views/index.jsp</welcome-file>
         </welcome-file-list>
+        <servlet>
+            <servlet-name>DashboardAdminServlet</servlet-name>
+            <servlet-class>Servlets.Admin.DashboardAdminServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>DashboardAdminServlet</servlet-name>
+            <url-pattern>*.DashboardAdminServlet</url-pattern>
+        </servlet-mapping>
+        <servlet>
+            <servlet-name>DashboardSuperAdminServlet</servlet-name>
+            <servlet-class>Servlets.SuperAdmin.DashboardSuperAdminServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>DashboardSuperAdminServlet</servlet-name>
+            <url-pattern>*.DashboardSuperAdminServlet</url-pattern>
+        </servlet-mapping>
+        <servlet>
+            <servlet-name>DashboardResponsableRayonServlet</servlet-name>
+            <servlet-class>Servlets.ResponsapleRayon.DashboardResponsableRayonServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>DashboardResponsableRayonServlet</servlet-name>
+            <url-pattern>*.DashboardResponsableRayonServlet</url-pattern>
+        </servlet-mapping>
 </web-app>

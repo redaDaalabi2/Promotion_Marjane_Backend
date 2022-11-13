@@ -23,7 +23,7 @@ public class AdminLoginServlet extends HttpServlet {
 
         try {
             if(authentificationController.isAdminAuth(email, password) != null){
-                response.sendRedirect("./AdminDashboardServlet");
+                response.sendRedirect("./AdminDashboardServlet.DashboardAdminServlet");
             }else{
                 response.sendRedirect("./AdminLoginServlet");
             }

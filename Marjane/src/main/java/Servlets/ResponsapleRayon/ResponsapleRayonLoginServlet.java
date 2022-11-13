@@ -25,7 +25,7 @@ public class ResponsapleRayonLoginServlet extends HttpServlet {
 
         try {
             if(authentificationController.isResponsaplerayonAuth(email, password) != null){
-                response.sendRedirect("./ResponsableRayonDashboardServlet");
+                response.sendRedirect("./ResponsableRayonDashboardServlet.DashboardResponsableRayonServlet");
             }else{
                 response.sendRedirect("./ResponsapleRayonLoginServlet");
             }

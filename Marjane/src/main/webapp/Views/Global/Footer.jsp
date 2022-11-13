@@ -10,7 +10,7 @@
                 <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                 <ul class="text-gray-600 dark:text-gray-400">
                     <li class="mb-4">
-                        <a class="hover:underline">Marjane</a>
+                        <a href="../../../" class="hover:underline">Marjane</a>
                     </li>
                 </ul>
             </div>
@@ -66,6 +66,6 @@
         </div>
     </div>
 </footer>
-<script src="https://kit.fontawesome.com/d1aca8f508.js" crossorigin="anonymous"></script
+<script src="https://kit.fontawesome.com/d1aca8f508.js" crossorigin="anonymous"></script>
 </body>
 </html>
