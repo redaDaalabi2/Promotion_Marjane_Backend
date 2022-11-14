@@ -2,8 +2,8 @@ package Entity;
 
 import jakarta.persistence.*;
 
-import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 public class Promotion {
@@ -12,8 +12,11 @@ public class Promotion {
     @Column(name = "id")
     private int id;
     @Basic
-    @Column(name = "pourcentage")
-    private BigInteger pourcentage;
+    @Column(name = "taux")
+    private Float taux;
+    @Basic
+    @Column(name = "points_fidelite")
+    private long points_fidelite;
     @Basic
     @Column(name = "status")
     private String status;
@@ -21,20 +24,20 @@ public class Promotion {
     @Column(name = "produit_id")
     private Integer produitId;
     @Basic
-    @Column(name = "categorie_id")
-    private Integer categorieId;
-    @Basic
     @Column(name = "created_at")
     private Timestamp createdAt;
     @Basic
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+    @Basic
+    @Column(name = "date_debut")
+    private LocalDate date_debut;
+    @Basic
+    @Column(name = "date_fin")
+    private LocalDate date_fin;
     @ManyToOne
     @JoinColumn(name = "produit_id", referencedColumnName = "id_produit", nullable = false, insertable = false, updatable = false)
     private Produit produitByProduitId;
-    @ManyToOne
-    @JoinColumn(name = "categorie_id", referencedColumnName = "id_categorie", nullable = false, insertable = false, updatable = false)
-    private Categorie categorieByCategorieId;
 
     public int getId() {
         return id;
@@ -44,12 +47,18 @@ public class Promotion {
         this.id = id;
     }
 
-    public BigInteger getPourcentage() {
-        return pourcentage;
+    public Float getTaux() {
+        return taux;
     }
 
-    public void setPourcentage(BigInteger pourcentage) {
-        this.pourcentage = pourcentage;
+    public void setTaux(Float taux) {
+        this.taux = taux;
+    }
+    public long getPoints_fidelite() {
+        return points_fidelite;
+    }
+    public void setPoints_fidelite(long points_fidelite) {
+        this.points_fidelite = points_fidelite;
     }
 
     public String getStatus() {
@@ -64,14 +73,6 @@ public class Promotion {
 
     public void setProduitId(Integer produitId) {
         this.produitId = produitId;
-    }
-
-    public Integer getCategorieId() {
-        return categorieId;
-    }
-
-    public void setCategorieId(Integer categorieId) {
-        this.categorieId = categorieId;
     }
 
     public Timestamp getCreatedAt() {
@@ -90,6 +91,22 @@ public class Promotion {
         this.updatedAt = updatedAt;
     }
 
+    public LocalDate getDate_debut() {
+        return date_debut;
+    }
+
+    public void setDate_debut(LocalDate date_debut) {
+        this.date_debut = date_debut;
+    }
+
+    public LocalDate getDate_fin(){
+        return date_fin;
+    }
+
+    public void setDate_fin(LocalDate date_fin){
+        this.date_fin = date_fin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,27 +115,27 @@ public class Promotion {
         Promotion promotion = (Promotion) o;
 
         if (id != promotion.id) return false;
-        if (pourcentage != null ? !pourcentage.equals(promotion.pourcentage) : promotion.pourcentage != null)
+        if (taux != null ? !taux.equals(promotion.taux) : promotion.taux != null)
             return false;
         if (status != null ? !status.equals(promotion.status) : promotion.status != null) return false;
         if (produitId != null ? !produitId.equals(promotion.produitId) : promotion.produitId != null) return false;
-        if (categorieId != null ? !categorieId.equals(promotion.categorieId) : promotion.categorieId != null)
-            return false;
         if (createdAt != null ? !createdAt.equals(promotion.createdAt) : promotion.createdAt != null) return false;
         if (updatedAt != null ? !updatedAt.equals(promotion.updatedAt) : promotion.updatedAt != null) return false;
-
+        if (date_debut != null ? !date_debut.equals(promotion.date_debut) : promotion.date_debut != null) return false;
+        if (date_fin != null ? !date_fin.equals(promotion.date_fin) : promotion.date_fin != null) return false;
         return true;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (pourcentage != null ? pourcentage.hashCode() : 0);
+        result = 31 * result + (taux != null ? taux.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (produitId != null ? produitId.hashCode() : 0);
-        result = 31 * result + (categorieId != null ? categorieId.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        result = 31 * result + (date_debut != null ? date_debut.hashCode() : 0);
+        result = 31 * result + (date_fin != null ? date_fin.hashCode() : 0);
         return result;
     }
 
@@ -130,11 +147,4 @@ public class Promotion {
         this.produitByProduitId = produitByProduitId;
     }
 
-    public Categorie getCategorieByCategorieId() {
-        return categorieByCategorieId;
-    }
-
-    public void setCategorieByCategorieId(Categorie categorieByCategorieId) {
-        this.categorieByCategorieId = categorieByCategorieId;
-    }
 }

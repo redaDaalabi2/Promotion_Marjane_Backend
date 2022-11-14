@@ -23,8 +23,6 @@ public class Categorie {
     @OneToMany(mappedBy = "categorieByCategorieId")
     private Collection<Produit> produitsByIdCategorie;
     @OneToMany(mappedBy = "categorieByCategorieId")
-    private Collection<Promotion> promotionsByIdCategorie;
-    @OneToMany(mappedBy = "categorieByCategorieId")
     private Collection<ResponsapleRayon> responsapleRayonsByIdCategorie;
 
     public int getIdCategorie() {
@@ -90,14 +88,6 @@ public class Categorie {
 
     public void setProduitsByIdCategorie(Collection<Produit> produitsByIdCategorie) {
         this.produitsByIdCategorie = produitsByIdCategorie;
-    }
-
-    public Collection<Promotion> getPromotionsByIdCategorie() {
-        return promotionsByIdCategorie;
-    }
-
-    public void setPromotionsByIdCategorie(Collection<Promotion> promotionsByIdCategorie) {
-        this.promotionsByIdCategorie = promotionsByIdCategorie;
     }
 
     public Collection<ResponsapleRayon> getResponsapleRayonsByIdCategorie() {

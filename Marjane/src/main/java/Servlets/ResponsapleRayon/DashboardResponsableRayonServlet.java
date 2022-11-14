@@ -17,6 +17,9 @@ public class DashboardResponsableRayonServlet extends HttpServlet {
         if(path.equals("/ResponsableRayonPromotionServlet.DashboardResponsableRayonServlet")){
             request.getRequestDispatcher("./Views/ResponsableRayon/PromotionResponsablerayon.jsp").forward(request, response);
         }
+        if(path.equals("/ResponsableRayonLogoutServlet.DashboardResponsableRayonServlet")){
+            response.sendRedirect("./ResponsapleRayonLoginServlet");
+        }
     }
 
     @Override

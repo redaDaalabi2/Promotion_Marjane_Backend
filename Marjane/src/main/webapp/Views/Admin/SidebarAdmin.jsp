@@ -140,7 +140,7 @@
         <div class="flex items-center px-4 -mx-2">
             <img class="object-cover mx-2 rounded-full h-9 w-9" src="https://cdn0.iconfinder.com/data/icons/man-user-human-profile-avatar-person-business/100/10-1User_14-512.png" alt="avatar" />
             <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">Admin</h4>
-            <a href="#" class="ml-auto cursor-pointer">
+            <a href="../../../LogoutAdminServlet.DashboardAdminServlet" class="ml-auto cursor-pointer">
                 <i class="fa-solid fa-right-from-bracket"></i>
             </a>
         </div>

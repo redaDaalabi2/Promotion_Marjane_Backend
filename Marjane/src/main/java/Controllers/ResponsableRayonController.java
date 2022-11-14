@@ -30,7 +30,7 @@ public class ResponsableRayonController {
             newResponsapleRayon.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
             newResponsapleRayon.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
             // sending email .....
-            Email.sendMail(email, ResponsapleRayonMessage(email, password));
+            Email.sendMail(email, ResponsapleRayonMessage(email));
             return responsableRayonDao.save(newResponsapleRayon) != null;
         }
     }
@@ -44,9 +44,9 @@ public class ResponsableRayonController {
         return false;
     }
 
-    public static String ResponsapleRayonMessage(String email, String password){
+    public static String ResponsapleRayonMessage(String email){
         return  "Bonjour, le compte a été créer avec succes. \n" +
-                "\n\tEmail :   "+ email + "\n\tPassword :   " + password;
+                "\nEmail :   "+ email + "\n Voilà le lien pour login : http://localhost:8080/ResponsapleRayonLoginServlet";
     }
 
 }

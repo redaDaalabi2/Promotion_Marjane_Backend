@@ -2,15 +2,20 @@ package Servlets.Admin;
 
 import Controllers.CategorieController;
 import Controllers.ProduitController;
+import Controllers.PromotionController;
 import Controllers.ResponsableRayonController;
 import Entity.Categorie;
 import Entity.Produit;
+import Entity.Promotion;
+import Services.Variable;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet(name = "DashboardAdminServlet", value = "/DashboardAdminServlet")
 public class DashboardAdminServlet extends HttpServlet {
@@ -39,7 +44,16 @@ public class DashboardAdminServlet extends HttpServlet {
             request.getRequestDispatcher("./Views/Admin/CreateResponsableRayon.jsp").forward(request, response);
         }
         if (path.equals("/AdminPromotionServlet.DashboardAdminServlet")){
+            int id = Integer.valueOf(request.getParameter("id"));
+            ProduitController produitController = new ProduitController();
+            produitController.getProduitById(id).ifPresent(produit -> request.setAttribute("produit", produit));
             request.getRequestDispatcher("./Views/Admin/PromotionAdmin.jsp").forward(request, response);
+        }
+        if(path.equals("/CreatePromotionServlet.DashboardAdminServlet")){
+            request.getRequestDispatcher("./Views/Admin/PromotionAdmin.jsp").forward(request, response);
+        }
+        if (path.equals("/LogoutAdminServlet.DashboardAdminServlet")){
+            response.sendRedirect("./AdminLoginServlet");
         }
     }
 
@@ -73,6 +87,19 @@ public class DashboardAdminServlet extends HttpServlet {
                         e.printStackTrace();
                     }
                 }
+            break;
+            case "/CreatePromotionServlet.DashboardAdminServlet":
+            {
+                Promotion promotion = new Promotion();
+                int produit_id = Integer.valueOf(request.getParameter("produit_id"));
+                float taux = Float.valueOf(request.getParameter("taux"));
+                long points_fidelite = Long.valueOf(request.getParameter("points_fidelite"));
+                LocalDate date_fin = LocalDate.parse(request.getParameter("date_fin"));
+                PromotionController promotionController = new PromotionController();
+                String status = Variable.status.Encours.toString();
+                promotionController.ajouterPromotion(produit_id, status, taux, promotion, points_fidelite, date_fin);
+                response.sendRedirect("./CreatePromotionServlet.DashboardAdminServlet");
+            }
             break;
         }
     }

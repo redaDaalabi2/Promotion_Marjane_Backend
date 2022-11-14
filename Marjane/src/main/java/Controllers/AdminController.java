@@ -31,7 +31,7 @@ public class AdminController {
             newAdmin.setPassword(Hash.getHashedPassword(password));
             newAdmin.setCentreId(Math.toIntExact(centre_id));
             // sending email .....
-            Email.sendMail(email, adminMessage(email, password));
+            Email.sendMail(email, adminMessage(email));
             return adminDao.save(newAdmin) != null;
         }
     }
@@ -45,9 +45,9 @@ public class AdminController {
         return false;
     }
 
-    public static String adminMessage(String email, String password){
+    public static String adminMessage(String email){
         return  "Bonjour, le compte a été créer avec succes. \n" +
-                "\n\tEmail :   "+ email + "\n\tPassword :   " + password;
+                "\nEmail :   "+ email + "\n Voilà le lien pour login : http://localhost:8080/AdminLoginServlet";
     }
 
 }
