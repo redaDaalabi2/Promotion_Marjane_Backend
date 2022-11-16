@@ -24,11 +24,11 @@ public class PromotionController {
     }
 
     public static List<Promotion> getAllPromotionsResponssableRayon() {
-//        if (LocalTime.now().isAfter(LocalTime.of(8, 0, 0)) && LocalTime.now().isBefore(LocalTime.of(12, 0, 0))){
+        if (LocalTime.now().isAfter(LocalTime.of(8, 0, 0)) && LocalTime.now().isBefore(LocalTime.of(12, 0, 0))){
             return promotionDao.all();
-//        }else {
-//            return null;
-//        }
+        }else {
+            return null;
+        }
     }
 
     public static List<Promotion> listPromotion(Integer id) {
