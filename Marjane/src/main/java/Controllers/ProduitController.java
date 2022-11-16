@@ -45,4 +45,6 @@ public class ProduitController {
         return produitDao.findById(Long.valueOf(id_produit));
     }
 
+    
+
 }

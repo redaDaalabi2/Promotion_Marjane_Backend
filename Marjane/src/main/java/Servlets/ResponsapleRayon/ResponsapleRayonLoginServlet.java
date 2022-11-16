@@ -3,6 +3,7 @@ package Servlets.ResponsapleRayon;
 import Controllers.AuthentificationController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,6 +26,10 @@ public class ResponsapleRayonLoginServlet extends HttpServlet {
 
         try {
             if(authentificationController.isResponsaplerayonAuth(email, password) != null){
+                Cookie cookie = new Cookie("IdResponsableRayon", String.valueOf(authentificationController.isResponsaplerayonAuth(email, password).getId()));  //create cookie
+                cookie.setMaxAge(60 * 60);  //set cookie age to 1 hour
+                response.addCookie(cookie);  //add cookie to response
+                request.setAttribute("IdResponsableRayon", authentificationController.isResponsaplerayonAuth(email, password).getId());
                 response.sendRedirect("./ResponsableRayonDashboardServlet.DashboardResponsableRayonServlet");
             }else{
                 response.sendRedirect("./ResponsapleRayonLoginServlet");

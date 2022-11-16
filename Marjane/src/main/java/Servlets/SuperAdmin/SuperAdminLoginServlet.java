@@ -22,10 +22,10 @@ public class SuperAdminLoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         try {
             if (authentificationController.isSuperadminAuth(email, password) != null) {
-                Cookie cookie = new Cookie("id", String.valueOf(authentificationController.isSuperadminAuth(email, password).getId()));  //create cookie
+                Cookie cookie = new Cookie("IdSuperAdmin", String.valueOf(authentificationController.isSuperadminAuth(email, password).getId()));  //create cookie
                 cookie.setMaxAge(60 * 60);  //set cookie age to 1 hour
                 response.addCookie(cookie);  //add cookie to response
-                request.setAttribute("id", authentificationController.isSuperadminAuth(email, password).getId());
+                request.setAttribute("IdSuperAdmin", authentificationController.isSuperadminAuth(email, password).getId());
                 response.sendRedirect("./SuperAdminDashboardServlet.DashboardSuperAdminServlet");
             } else {
                 response.sendRedirect("./SuperAdminLoginServlet");

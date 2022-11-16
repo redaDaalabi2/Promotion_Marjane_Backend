@@ -22,38 +22,61 @@ public class DashboardAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
-        if (path.equals("/AdminCategorieServlet.DashboardAdminServlet")) {
-            CategorieController categorieController = new CategorieController();
-            List<Categorie> categories = categorieController.getAllCategorie();
-            request.setAttribute("categories", categories);
-            request.getRequestDispatcher("./Views/Admin/CategorieAdmin.jsp").forward(request, response);
+        Cookie[] cookies = request.getCookies();
+        String IdAdmin = "0";
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("IdAdmin")) {
+                IdAdmin = cookie.getValue();
+            }
         }
-        if (path.equals("/AdminDashboardServlet.DashboardAdminServlet")) {
-            request.getRequestDispatcher("./Views/Admin/DashboardAdmin.jsp").forward(request, response);
-        }
-        if (path.equals("/AdminProduitServlet.DashboardAdminServlet")) {
-            ProduitController produitController = new ProduitController();
-            List<Produit> produits = produitController.getAllProduits();
-            request.setAttribute("produits", produits);
-            request.getRequestDispatcher("./Views/Admin/ProduitAdmin.jsp").forward(request, response);
-        }
-        if (path.equals("/CreateResponsableRayonServlet.DashboardAdminServlet")) {
-            CategorieController categorieController = new CategorieController();
-            List<Categorie> categories = categorieController.getAllCategorie();
-            request.setAttribute("categories", categories);
-            request.getRequestDispatcher("./Views/Admin/CreateResponsableRayon.jsp").forward(request, response);
-        }
-        if (path.equals("/AdminPromotionServlet.DashboardAdminServlet")){
-            int id = Integer.valueOf(request.getParameter("id"));
-            ProduitController produitController = new ProduitController();
-            produitController.getProduitById(id).ifPresent(produit -> request.setAttribute("produit", produit));
-            request.getRequestDispatcher("./Views/Admin/PromotionAdmin.jsp").forward(request, response);
-        }
-        if(path.equals("/CreatePromotionServlet.DashboardAdminServlet")){
-            request.getRequestDispatcher("./Views/Admin/PromotionAdmin.jsp").forward(request, response);
-        }
-        if (path.equals("/LogoutAdminServlet.DashboardAdminServlet")){
+        if (IdAdmin.equals("0")) {
             response.sendRedirect("./AdminLoginServlet");
+        }else {
+            if (path.equals("/AdminCategorieServlet.DashboardAdminServlet")) {
+                CategorieController categorieController = new CategorieController();
+                List<Categorie> categories = categorieController.getAllCategorie();
+                request.setAttribute("categories", categories);
+                request.getRequestDispatcher("./Views/Admin/CategorieAdmin.jsp").forward(request, response);
+            }
+            if (path.equals("/AdminDashboardServlet.DashboardAdminServlet")) {
+                request.getRequestDispatcher("./Views/Admin/DashboardAdmin.jsp").forward(request, response);
+            }
+            if (path.equals("/AdminProduitServlet.DashboardAdminServlet")) {
+                ProduitController produitController = new ProduitController();
+                List<Produit> produits = produitController.getAllProduits();
+                request.setAttribute("produits", produits);
+                request.getRequestDispatcher("./Views/Admin/ProduitAdmin.jsp").forward(request, response);
+            }
+            if (path.equals("/CreateResponsableRayonServlet.DashboardAdminServlet")) {
+                CategorieController categorieController = new CategorieController();
+                List<Categorie> categories = categorieController.getAllCategorie();
+                request.setAttribute("categories", categories);
+                request.getRequestDispatcher("./Views/Admin/CreateResponsableRayon.jsp").forward(request, response);
+            }
+            if (path.equals("/AdminPromotionServlet.DashboardAdminServlet")) {
+                int id = Integer.valueOf(request.getParameter("id"));
+                ProduitController produitController = new ProduitController();
+                produitController.getProduitById(id).ifPresent(produit -> request.setAttribute("produit", produit));
+                request.getRequestDispatcher("./Views/Admin/PromotionAdmin.jsp").forward(request, response);
+            }
+            if(path.equals("/AdmingetAllPromotionServlet.DashboardAdminServlet")){
+                PromotionController promotionController = new PromotionController();
+                List<Promotion> promotions = promotionController.getAllPromotions();
+                request.setAttribute("promotions", promotions);
+                request.getRequestDispatcher("./Views/Admin/getAllPromotionAdmin.jsp").forward(request, response);
+            }
+            if (path.equals("/CreatePromotionServlet.DashboardAdminServlet")) {
+                request.getRequestDispatcher("./Views/Admin/PromotionAdmin.jsp").forward(request, response);
+            }
+            if (path.equals("/LogoutAdminServlet.DashboardAdminServlet")) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("IdAdmin")) {
+                        cookie.setMaxAge(0);
+                        response.addCookie(cookie);
+                    }
+                }
+                response.sendRedirect("./AdminLoginServlet");
+            }
         }
     }
 
@@ -98,7 +121,7 @@ public class DashboardAdminServlet extends HttpServlet {
                 PromotionController promotionController = new PromotionController();
                 String status = Variable.status.Encours.toString();
                 promotionController.ajouterPromotion(produit_id, status, taux, promotion, points_fidelite, date_fin);
-                response.sendRedirect("./CreatePromotionServlet.DashboardAdminServlet");
+                response.sendRedirect("./AdmingetAllPromotionServlet.DashboardAdminServlet");
             }
             break;
         }

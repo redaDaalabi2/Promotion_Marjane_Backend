@@ -24,6 +24,10 @@ public class PromotionDao implements BaseDao<Promotion>{
         return Optional.ofNullable(entityManager.find(Promotion.class, id));
     }
 
+    public Promotion get(Integer id) {
+        return entityManager.find(Promotion.class, id);
+    }
+
     @Override
     public Promotion save(Promotion promotion) {
         try {
@@ -52,19 +56,14 @@ public class PromotionDao implements BaseDao<Promotion>{
     public Boolean update(Long id, Promotion promotion) {
         try {
             entityTransaction.begin();
-            String hql = "UPDATE Promotion set status = :status " + "WHERE id = :id";
-            Query qry = entityManager.createQuery(hql);
-            qry.setParameter("status", promotion.getStatus());
-            qry.setParameter("id", id);
+            entityManager.merge(promotion);
             entityTransaction.commit();
             return true;
         } catch (Exception e) {
             entityTransaction.rollback();
             e.printStackTrace();
-        } finally {
-            entityManager.close();
+            return false;
         }
-        return false;
     }
 
     @Override

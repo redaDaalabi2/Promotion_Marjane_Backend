@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--Container-->
-<div style="width: 80%; margin-left: auto;" class="px-2">
+<div style="width: 80%; margin-left: auto;" class="px-2 w-4/5 ml-auto h-screen">
   <!--Title-->
   <h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
     All Categories

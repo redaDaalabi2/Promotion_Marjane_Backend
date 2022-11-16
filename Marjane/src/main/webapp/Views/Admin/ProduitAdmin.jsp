@@ -18,8 +18,7 @@
                     <th data-priority="4">Prix</th>
                     <th data-priority="5">Nom de Catetorie</th>
                     <th data-priority="6">Created at</th>
-                    <th data-priority="7">Updated at</th>
-                    <th data-priority="8">Actions</th>
+                    <th data-priority="7">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,13 +37,10 @@
                                 ${produit.prix}
                         </td>
                         <td class="text-center">
-                                ${produit.categorieId}
+                                ${produit.categorieByCategorieId.nomCategorie}
                         </td>
                         <td class="text-center">
                                 ${produit.createdAt}
-                        </td>
-                        <td class="text-center">
-                                ${produit.updatedAt}
                         </td>
                         <td class="text-center">
                             <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">

@@ -2,6 +2,7 @@ package Controllers;
 
 import DAO.Imple.AdminDao;
 import Entity.Admin;
+import Entity.Produit;
 import Services.Email;
 import Services.Hash;
 
@@ -48,6 +49,10 @@ public class AdminController {
     public static String adminMessage(String email){
         return  "Bonjour, le compte a été créer avec succes. \n" +
                 "\nEmail :   "+ email + "\n Voilà le lien pour login : http://localhost:8080/AdminLoginServlet";
+    }
+
+    public static List<Admin> countAllAdmin() {
+        return adminDao.CountAdmin();
     }
 
 }

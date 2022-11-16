@@ -72,4 +72,8 @@ public class AdminDao implements BaseDao<Admin> {
         return true;
     }
 
+    public List<Admin> CountAdmin() {
+        return entityManager.createQuery("SELECT COUNT(*) as counter FROM Admin", Admin.class).getResultList();
+    }
+
 }

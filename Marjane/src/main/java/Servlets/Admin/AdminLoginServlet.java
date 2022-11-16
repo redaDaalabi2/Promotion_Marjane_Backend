@@ -23,6 +23,10 @@ public class AdminLoginServlet extends HttpServlet {
 
         try {
             if(authentificationController.isAdminAuth(email, password) != null){
+                Cookie cookie = new Cookie("IdAdmin", String.valueOf(authentificationController.isAdminAuth(email, password).getId()));  //create cookie
+                cookie.setMaxAge(60 * 60);  //set cookie age to 1 hour
+                response.addCookie(cookie);  //add cookie to response
+                request.setAttribute("IdAdmin", authentificationController.isAdminAuth(email, password).getId());
                 response.sendRedirect("./AdminDashboardServlet.DashboardAdminServlet");
             }else{
                 response.sendRedirect("./AdminLoginServlet");

@@ -1,3 +1,4 @@
+<%@ page import="Entity.Categorie" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--Container-->
 <div style="width: 80%; margin-left: auto;" class="px-2">
@@ -35,7 +36,7 @@
               ${produit.prix}
           </td>
           <td class="text-center">
-              ${produit.categorieId}
+              ${produit.categorieByCategorieId.nomCategorie}
           </td>
           <td class="text-center">
               ${produit.createdAt}

@@ -137,8 +137,12 @@
         <i class="fa-brands fa-product-hunt"></i>
         <span class="mx-4 font-medium">Produit</span>
       </a>
+      <a href="../../../getAllPromotionsServlet.DashboardSuperAdminServlet" class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700">
+        <i class="fa-solid fa-tag"></i>
+        <span class="mx-4 font-medium">Promotion</span>
+      </a>
     </nav>
-    <hr class="mt-32 mb-6 border-gray-200 dark:border-gray-600" />
+    <hr class="mt-16 mb-6 border-gray-200 dark:border-gray-600" />
     <div class="flex items-center px-4 -mx-2">
       <img class="object-cover mx-2 rounded-full h-9 w-9" src="../../Assets/profile.jfif" alt="avatar" />
       <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">Super Admin</h4>
